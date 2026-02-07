@@ -12,9 +12,13 @@ export async function GET(
       return NextResponse.json({ error: "Invalid experiment number" }, { status: 400 });
     }
 
-    const host = request.headers.get("host") || "localhost:3000";
-    const protocol = request.headers.get("x-forwarded-proto") || "http";
-    const uploadUrl = `${protocol}://${host}/upload/${expNum}`;
+    let baseUrl = process.env.SITE_URL;
+    if (!baseUrl) {
+      const host = request.headers.get("host") || "localhost:3000";
+      const protocol = request.headers.get("x-forwarded-proto") || "http";
+      baseUrl = `${protocol}://${host}`;
+    }
+    const uploadUrl = `${baseUrl.replace(/\/$/, "")}/upload/${expNum}`;
 
     const qrDataUrl = await QRCode.toDataURL(uploadUrl, {
       width: 400,
