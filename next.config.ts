@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [],
+  },
+  // Allow large file uploads
+  serverExternalPackages: ["sharp"],
 };
 
 export default nextConfig;
