@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { ExperimentImage } from "@/lib/types";
 import { ImageAnnotator } from "./image-annotator";
 import { ImageNotes } from "./image-notes";
@@ -140,16 +139,11 @@ export function ImageGallery({
               }`}
               onClick={() => setSelectedIndex(index)}
             >
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={image.filename}
                 alt={image.description || image.originalName}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes={
-                  compact
-                    ? "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
-                    : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                }
+                className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
               {!compact && (
                 <span className="absolute left-2 top-2 inline-flex items-center rounded-md border-2 border-foreground bg-highlight px-1.5 py-0.5 text-[10px] sm:text-xs font-black">
