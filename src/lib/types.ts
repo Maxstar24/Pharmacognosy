@@ -27,6 +27,10 @@ export interface ExperimentImage {
   id: string;
   experimentNumber: number;
   filename: string;
+  /** Optimized WebP version for the detail/lightbox view */
+  optimized?: string;
+  /** Small thumbnail for gallery grid */
+  thumbnail?: string;
   originalName: string;
   description: string;
   /** Detailed explanation / notes that anyone can edit */

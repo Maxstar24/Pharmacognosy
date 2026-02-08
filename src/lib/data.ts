@@ -107,7 +107,9 @@ export async function addImage(
   description: string,
   uploadedBy: string,
   mimeType: string,
-  size: number
+  size: number,
+  optimized?: string,
+  thumbnail?: string
 ): Promise<ExperimentImage> {
   const redis = getRedis();
 
@@ -122,6 +124,8 @@ export async function addImage(
     id,
     experimentNumber: num,
     filename,
+    optimized,
+    thumbnail,
     originalName,
     description,
     notes: "",

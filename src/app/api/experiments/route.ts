@@ -13,7 +13,11 @@ export async function GET() {
       getAllExperiments(),
       getStats(),
     ]);
-    return NextResponse.json({ experiments, stats });
+    return NextResponse.json({ experiments, stats }, {
+      headers: {
+        "Cache-Control": "public, s-maxage=10, stale-while-revalidate=30",
+      },
+    });
   } catch (error) {
     console.error("Error fetching experiments:", error);
     return NextResponse.json(

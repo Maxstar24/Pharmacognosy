@@ -141,8 +141,9 @@ export function ImageGallery({
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={image.filename}
+                src={image.thumbnail || image.filename}
                 alt={image.description || image.originalName}
+                loading="lazy"
                 className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
               {!compact && (
@@ -302,7 +303,7 @@ export function ImageGallery({
                 experimentNumber || selectedImage.experimentNumber
               }
               imageId={selectedImage.id}
-              imageSrc={selectedImage.filename}
+              imageSrc={selectedImage.optimized || selectedImage.filename}
               imageAlt={
                 selectedImage.description || selectedImage.originalName
               }
